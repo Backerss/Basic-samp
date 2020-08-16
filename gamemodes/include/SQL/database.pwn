@@ -2,8 +2,8 @@
 
 #define MYSQL_HOST "localhost"
 #define MYSQL_USER "root"
-#define MYSQL_PASS "0622647041"
-#define MYSQL_DB   "database_rpdm"
+#define MYSQL_PASS ""
+#define MYSQL_DB   ""
 
 new MySQL:SQLDB;
 
