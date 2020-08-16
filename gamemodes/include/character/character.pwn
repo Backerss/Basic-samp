@@ -9,9 +9,9 @@ public CheckLogin(playerid)
 	SetupPlayerForClassSelection(playerid);
 
     if(rows)
-        return Dialog_Show(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Login Now!", "Enter you password:", "??????", "??????");
+        return Dialog_Show(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Login Now!", "Enter you password:", "ยืนยัน", "ยกเลิก");
     else
-        return Dialog_Show(playerid, DIALOG_REGISTER, DIALOG_STYLE_PASSWORD, "Register Now!", "Enter you password:", "??????", "??????");
+        return Dialog_Show(playerid, DIALOG_REGISTER, DIALOG_STYLE_PASSWORD, "Register Now!", "Enter you password:", "ยืนยัน", "ยกเลิก");
 }
 
 Dialog:DIALOG_REGISTER(playerid, response, listitem, inputtext[])
@@ -20,9 +20,9 @@ Dialog:DIALOG_REGISTER(playerid, response, listitem, inputtext[])
 		return KickEx(playerid);
 
     if(strlen(inputtext) < 8 || strlen(inputtext) > 20)
-		return Dialog_Show(playerid, DIALOG_REGISTER, DIALOG_STYLE_PASSWORD, "Register Now!", "Enter New Password More than 3 characters:", "??????", "??????");
+		return Dialog_Show(playerid, DIALOG_REGISTER, DIALOG_STYLE_PASSWORD, "Register Now!", "Enter New Password More than 3 characters:", "ยืนยัน", "ยกเลิก");
 
-	SendClientMessageEx(playerid, -1, "{33FFCC}??????????? {F4511E}%s {33FFCC}?????????????????????????",ReturnName(playerid));
+	SendClientMessageEx(playerid, -1, "{33FFCC}ยินดีตอนรับ {F4511E}%s {33FFCC}เข้าสู่ครอบครับของเซืฟเรา",ReturnName(playerid));
 	SetupPlayerForClassSelection(playerid);
 	new insert[500];
 	mysql_format(SQLDB, insert, sizeof(insert), "INSERT INTO `account` (`pName`,`pSkin`,`pCash`,`pLevel`,`pPassword`) VALUES ('%e',%d,%d,%d,sha1('%e'))",ReturnName(playerid),random(300),5000,1,inputtext);
@@ -56,7 +56,7 @@ public CheckPlayer(playerid)
 	if(!cache_num_rows())
 	{
 		SetupPlayerForClassSelection(playerid);
-		Dialog_Show(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Error Login!!", "Enter you password:", "??????", "??????");
+		Dialog_Show(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Error Login!!", "Enter you password:", "ยืนยัน", "ยกเลิก");
 		return 1;
 	}
 	else
@@ -82,9 +82,9 @@ public CheckPlayer(playerid)
 
 stock LoadPlayer(playerid)
 {
-	/*???????????????????????*/
-	SendClientMessageToAllEx(-1, "{D35400}??????????? {27AE60}%s {D35400}??????????????????? ??????", ReturnName(playerid));
-	/*???????????????????????*/
+	/*แจ้งข้อความต่างๆตอนเกิด*/
+	SendClientMessageToAllEx(-1, "{D35400}ยินดีตอนรับ {27AE60}%s {D35400}เข้าสู่เซืฟเวอร์ของ พวกเรา", ReturnName(playerid));
+	/*แจ้งข้อความต่างๆตอนเกิด*/
 
 	PlayerLogin[playerid] = true;
 	SetSpawnInfo(playerid, NO_TEAM, 1, 0.0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0, 0);
@@ -96,7 +96,7 @@ stock LoadPlayer(playerid)
 	SetPlayerScore(playerid, PlayerData[playerid][pLevel]);
 	if(PlayerData[playerid][pAdmin])
 	{
-		SendClientMessageEx(playerid, -1, "{FF0000}ADMIN{FAFAFA}: {43A047}??????????????????????????????????? ????? {FFEB3B}%d", PlayerData[playerid][pAdmin]);
+		SendClientMessageEx(playerid, -1, "{FF0000}ADMIN{FAFAFA}: {43A047}คุณเข้าสู่ระบบตัวละครของผู้ดูแลระบบ เลเวล {FFEB3B}%d", PlayerData[playerid][pAdmin]);
 	}
 
 	SpawnPlayer(playerid);
