@@ -2,17 +2,17 @@
 CMD:spawncar(playerid, params[])
 {
     if(!CheckAdmin(playerid))
-        return SendErrorMessage(playerid, "คุณไม่ใช่ผู้ดูแลระบบ");
+        return SendErrorMessage(playerid, "????????????????????");
 
     new modelid, vehicleid = INVALID_VEHICLE_ID;
     new Float:x, Float:y, Float:z, Float:rotation;
 
 
     if(sscanf(params, "i", modelid))
-        return SendUsageMessage(playerid, "/spawncar [โมเดล-ไอดี]");
+        return SendUsageMessage(playerid, "/spawncar [?????-????]");
 
     if(modelid < 400 || modelid > 611)
-        return SendErrorMessage(playerid, "คุณใส่ไอดีรถผิดพลาด");
+        return SendErrorMessage(playerid, "???????????????????");
 
     GetPlayerPos(playerid, x, y, z);
     GetPlayerFacingAngle(playerid, rotation);
@@ -25,7 +25,7 @@ CMD:spawncar(playerid, params[])
     }
 
     new str[128];
-    format(str, sizeof(str), "%s เสกรถ %s ออกมา", ReturnName(playerid), ReturnVehicleName(vehicleid));
+    format(str, sizeof(str), "%s ????? %s ?????", ReturnName(playerid), ReturnVehicleName(vehicleid));
     SendAdminMessage(2, str);
     PutPlayerInVehicle(playerid, vehicleid, 0);
     ToggleVehicleEngine(vehicleid, true);
@@ -35,18 +35,18 @@ CMD:spawncar(playerid, params[])
 CMD:setskin(playerid, params[])
 {
     if(!CheckAdmin(playerid))
-        return SendErrorMessage(playerid, "คุณไม่ใช่ผู้ดูแลระบบ");
+        return SendErrorMessage(playerid, "????????????????????");
     
     new playerb, skinid;
 
     if(sscanf(params, "ui", playerb, skinid))
-        return SendUsageMessage(playerid, "/setskin [ชื่อบางส่วน/ไอดี] [ไอดี-ตัวละคร]");
+        return SendUsageMessage(playerid, "/setskin [???????????/????] [????-???????]");
 
     if(!IsPlayerConnected(playerb))
-        return SendErrorMessage(playerid, "ผู้เล่นไม่ได้อยู่ภายในเซืฟเวอร์");
+        return SendErrorMessage(playerid, "???????????????????????????????");
 
     if(PlayerLogin[playerb] == false)
-        return SendErrorMessage(playerid, "ผู้เล่นกำลังเข้าสู่ระบบ");
+        return SendErrorMessage(playerid, "???????????????????????");
 
     SetPlayerSkin(playerb, skinid);
     PlayerData[playerb][pSkin] = skinid;
@@ -64,11 +64,11 @@ CMD:despawncar(playerid, params[])
         new getvehid = GetPlayerVehicleID(playerid);
 
         if(getvehid == 0)
-            return SendUsageMessage(playerid,"/despawncar [ไอดี-รถ]");
+            return SendUsageMessage(playerid,"/despawncar [????-??]");
 
         
         if(VehicleData[getvehid][VehicleAdminSpawn] != true)
-            return SendErrorMessage(playerid, "รถคันนี้ไม่ใช้รถที่เป็นรถ เสกของผู้ดูแลระบบ");
+            return SendErrorMessage(playerid, "????????????????????????? ?????????????????");
 
         
         ResetVehicle(getvehid);
@@ -78,10 +78,10 @@ CMD:despawncar(playerid, params[])
     else
     {
         if(!IsValidVehicle(vehicleid))
-           return SendErrorMessage(playerid, "ไม่มีไอดีรถที่ต้องการ");
+           return SendErrorMessage(playerid, "?????????????????????");
 
         if(VehicleData[vehicleid][VehicleAdminSpawn] != true)
-            return SendErrorMessage(playerid, "รถคันนี้ไม่ใช้รถที่เป็นรถ เสกของผู้ดูแลระบบ");
+            return SendErrorMessage(playerid, "????????????????????????? ?????????????????");
         
         ResetVehicle(vehicleid);
         DestroyVehicle(vehicleid);
